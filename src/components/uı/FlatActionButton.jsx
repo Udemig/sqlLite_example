@@ -7,7 +7,7 @@ import {Add} from 'iconsax-react-native';
 const FlatActionButton = props => {
   return (
     <TouchableOpacity  {...props} style={styles.container}>
-      <Add size={50} color={Colors.WHITE} />
+      <Add size={40} color={Colors.WHITE} />
     </TouchableOpacity>
   );
 };
@@ -18,8 +18,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: Colors.GREEN,
-    width: 80,
-    height: 80,
+    width: 70,
+    height: 70,
     borderRadius: 100,
     position: 'absolute',
     bottom: 20,

@@ -21,16 +21,16 @@ const styles = StyleSheet.create({
   input: {
     backgroundColor: Colors.INPUT,
     height: 45,
-    borderWidth: 0.5,
+    borderWidth: 0.3,
     borderColor: Colors.GRAY,
     padding: 5,
-    fontSize: 16,
+    fontSize: 14,
     borderRadius:5
   },
   title:{
     fontSize:14,
     marginVertical:5,
-    fontWeight:"medium"
+    fontWeight:"bold"
   }
 });
 

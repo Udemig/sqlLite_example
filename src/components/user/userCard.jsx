@@ -1,13 +1,33 @@
 //import liraries
 import React, {Component} from 'react';
-import {View, Text, StyleSheet, Pressable, Image} from 'react-native';
-import Colors from '../theme/colors';
-import Avatar from './uı/avatar';
-import {Call} from 'iconsax-react-native';
-import {compareUserName} from '../utils/functions';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Pressable,
+  Linking,
+  TouchableOpacity,
+} from 'react-native';
+import Colors from '../../theme/colors';
+import Avatar from '../uı/avatar';
+import {Call, Edit} from 'iconsax-react-native';
+import {compareUserName} from '../../utils/functions';
+import {useNavigation} from '@react-navigation/native';
+import {USERUPDATE} from '../../utils/routes';
 
 // create a component
 const UserCard = ({item}) => {
+  const navigation = useNavigation();
+  const callPhone = () => {
+    const url = `tel:${item.phone}`;
+    Linking.canOpenURL(url).then(supported => {
+      if (supported) {
+        return Linking.openURL(url);
+      } else {
+        alert('Desteklenmeyen Telefon Numarası');
+      }
+    });
+  };
   return (
     <Pressable style={styles.container}>
       <View style={styles.imageContainer}>
@@ -19,11 +39,14 @@ const UserCard = ({item}) => {
         </Text>
         <Text style={styles.phone}>{item.phone}</Text>
       </View>
-
       <View style={styles.callContainer}>
-        <Pressable>
+        <TouchableOpacity onPress={callPhone}>
           <Call size={30} color={Colors.GREEN} />
-        </Pressable>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => navigation.navigate(USERUPDATE, {user: item})}>
+          <Edit size={30} color={Colors.BLUE} />
+        </TouchableOpacity>
       </View>
     </Pressable>
   );
@@ -57,9 +80,10 @@ const styles = StyleSheet.create({
     fontSize: 18,
   },
   callContainer: {
-    justifyContent: 'center',
+    justifyContent: 'space-around',
     alignItems: 'center',
-    flex: 1,
+    flex: 2,
+    flexDirection: 'row',
   },
 });
 
